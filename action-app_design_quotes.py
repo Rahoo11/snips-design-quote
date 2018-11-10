@@ -42,6 +42,8 @@ class DesignQuote(object):
         design_quote = requests.get("https://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=1").json()[0]["content"]
         sanitized_design_quote = self.cleanHtml(design_quote)
 
+        print 'API responded: {}'.format(sanitized_design_quote)
+
         # Read out the quote that was returned
         hermes.publish_start_session_notification(intent_message.site_id, sanitized_design_quote, "design_quote_app")
 
